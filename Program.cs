@@ -6,7 +6,7 @@ Delegate Challenge: Create a delegate that takes two integers and performs basic
 using System;
 public delegate double Calculator(int a, int b);
 
-public class Program()
+public class Program
 {
     public static double Add(int a, int b)
     {
