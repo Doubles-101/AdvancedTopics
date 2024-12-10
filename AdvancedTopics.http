@@ -1,0 +1,6 @@
+@AdvancedTopics_HostAddress = http://localhost:5207
+
+GET {{AdvancedTopics_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
