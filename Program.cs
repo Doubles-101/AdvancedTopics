@@ -66,3 +66,76 @@ public class Program
         Console.WriteLine($"Result {result}");
     }
 }
+
+
+
+/* 
+Challenge #2
+Event Challenge: Create an event system where a class notifies subscribers 
+when a specific threshold is reached in a counter.
+*/
+
+public delegate void NotifyUser(string message);
+
+public class Threshold
+{
+    public event NotifyUser Notify;
+
+    private int _counter = 0;
+    private int _threshold;
+
+    public Threshold(int threshold)
+    {
+        _threshold = threshold;
+    }
+
+    public void IncrementCounter()
+    {
+        _counter++;
+        Console.WriteLine($"Counter {_counter}");
+
+        if (_counter >= _threshold)
+        {
+            TriggerEvent();
+        }
+    }
+
+
+    public void TriggerEvent()
+    {
+        Notify?.Invoke($"Threshold of {_threshold} Reached!!!");
+    }
+}
+
+public class Subscriber
+{
+    public void NotifyUser(string message)
+    {
+        Console.WriteLine($"Subscriber received notification: {message}");
+    }
+
+}
+
+public class Program2
+{
+    static void Main()
+    {
+
+        Console.WriteLine("Enter a threshold value:");
+        int threshold = int.Parse(Console.ReadLine());
+
+        // Creating objects
+        Threshold thresholdTracker = new Threshold(threshold);
+        Subscriber subscriber = new Subscriber();
+
+        thresholdTracker.Notify += subscriber.NotifyUser;
+
+        // Simulate counter increments
+        Console.WriteLine("Incrementing counter...");
+        for (int i = 0; i < threshold + 2; i++)
+        {
+            thresholdTracker.IncrementCounter();
+        }
+    }
+}
+
