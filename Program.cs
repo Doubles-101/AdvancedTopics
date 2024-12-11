@@ -4,6 +4,8 @@ Delegate Challenge: Create a delegate that takes two integers and performs basic
 (add, subtract, multiply, divide) based on the user's choice.
  */
 using System;
+using System.Collections.Generic;
+using System.Linq;
 public delegate double Calculator(int a, int b);
 
 public class Program
@@ -139,3 +141,32 @@ public class Program2
     }
 }
 
+
+/* 
+Challenge #3
+Lambda Challenge: Write a lambda expression that filters a list of integers to display 
+only even numbers and calculate their sum. 
+*/
+
+
+public delegate int EvenNumberCalculate();
+
+class Program3
+{  
+    static void Main()
+    {
+        // Make a list of numbers first 
+        List<int> numbers = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+
+        // Making a list of even numbers from original numbers list
+        List<int> evenNumbers = numbers.Where(n => n % 2 == 0).ToList();
+        Console.WriteLine("Even Numbers:");
+        evenNumbers.ForEach(n => Console.WriteLine(n));
+
+        // Making a variable of the number's sum
+        Console.WriteLine("Number Total");
+        int sumNumbers = numbers.Sum();
+        Console.WriteLine($"{sumNumbers}");
+
+    }
+}
